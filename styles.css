@@ -448,6 +448,17 @@ input:focus {
   color: var(--texto-suave);
 }
 
+.form-error {
+  background-color: #FBEAEA;
+  border: 1px solid #E3A3A3;
+  color: #8A2E2E;
+  border-radius: var(--radio-chico);
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  margin: -4px 0 14px;
+  max-width: none;
+}
+
 /* ===== PIE ===== */
 .site-footer {
   text-align: center;
