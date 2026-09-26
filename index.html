@@ -193,7 +193,8 @@
 
             <div id="panel-info" class="panel panel-activo">
                 <h3>Información de tu cuenta</h3>
-                <p>Nombre: <strong id="info-nombre">—</strong></p>
+                <p>Nombre completo: <strong id="info-nombre-completo">—</strong></p>
+                <p>Usuario: <strong id="info-usuario">—</strong></p>
                 <p>Correo: <strong id="info-correo">—</strong></p>
                 <p>Desde aquí podrás administrar tus datos y preferencias de la comunidad.</p>
             </div>
@@ -243,13 +244,14 @@
             <h2>Iniciar sesión</h2>
             <form id="form-login">
                 <div class="campo">
-                    <label for="login-correo">Correo</label>
-                    <input type="email" id="login-correo" required>
+                    <label for="login-identificador">Usuario o correo</label>
+                    <input type="text" id="login-identificador" required>
                 </div>
                 <div class="campo">
                     <label for="login-clave">Contraseña</label>
                     <input type="password" id="login-clave" required>
                 </div>
+                <p class="form-error oculto" id="error-login"></p>
                 <button type="submit" class="btn btn-relleno">Entrar</button>
             </form>
         </div>
@@ -262,8 +264,16 @@
             <h2>Crear cuenta</h2>
             <form id="form-registro">
                 <div class="campo">
-                    <label for="registro-nombre">Nombre</label>
-                    <input type="text" id="registro-nombre" required>
+                    <label for="registro-nombres">Nombres</label>
+                    <input type="text" id="registro-nombres" required>
+                </div>
+                <div class="campo">
+                    <label for="registro-apellidos">Apellidos</label>
+                    <input type="text" id="registro-apellidos" required>
+                </div>
+                <div class="campo">
+                    <label for="registro-usuario">Nombre de usuario</label>
+                    <input type="text" id="registro-usuario" required>
                 </div>
                 <div class="campo">
                     <label for="registro-correo">Correo</label>
@@ -271,8 +281,9 @@
                 </div>
                 <div class="campo">
                     <label for="registro-clave">Contraseña</label>
-                    <input type="password" id="registro-clave" required>
+                    <input type="password" id="registro-clave" required minlength="4">
                 </div>
+                <p class="form-error oculto" id="error-registro"></p>
                 <button type="submit" class="btn btn-relleno">Crear cuenta</button>
             </form>
         </div>
