@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huertas Urbanas Colaborativas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <h1>Huertas Urbanas Colaborativas</h1>
+        <p class="tagline">
+            Construyendo soberanía alimentaria y resiliencia comunitaria.
+        </p>
+
+        <nav class="main-nav">
+            <ul>
+                <li>Inicio</a></li>
+                <li>Huertas</a></li>
+                <li>Calendario</a></li>
+                <li>Foro</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <section id="intro">
+            <h2>¿Qué es esta plataforma?</h2>
+
+            <p>
+                Esta plataforma permite registrar y gestionar huertas urbanas
+                comunitarias, compartir conocimientos y promover la producción
+                sostenible de alimentos.
+            </p>
+        </section>
+
+        <section id="registro-huerta">
+            <h2>Registrar una huerta</h2>
+
+            <form id="form-huerta">
+
+                <div class="campo">
+                    <label for="nombre">Nombre de la huerta</label>
+                    <input type="text" id="nombre" required>
+                </div>
+
+                <div class="campo">
+                    <label for="ubicacion">Ubicación</label>
+                    <input type="text" id="ubicacion" required>
+                </div>
+
+                <div class="campo">
+                    <label for="cultivo">Cultivo principal</label>
+                    <input type="text" id="cultivo" required>
+                </div>
+
+                <button type="submit">
+                    Registrar huerta
+                </button>
+
+            </form>
+        </section>
+
+        <section id="lista-huertas">
+            <h2>Huertas registradas</h2>
+
+            <div id="contenedor-huertas">
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
