@@ -4,75 +4,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Huertas Urbanas Colaborativas</title>
+    <title>EcoHuertos · Huertas Urbanas Colaborativas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-    <header class="site-header">
-        <h1>Huertas Urbanas Colaborativas</h1>
-        <p class="tagline">
-            Construyendo soberanía alimentaria y resiliencia comunitaria.
-        </p>
+    <!-- ===== BARRA SUPERIOR ===== -->
+    <header class="topbar">
+        <div class="marca">
+            <span class="marca-icono">🌿</span>
+            <span class="marca-texto">EcoHuertos</span>
+        </div>
 
-        <nav class="main-nav">
-            <ul>
-                <li>Inicio</a></li>
-                <li>Huertas</a></li>
-                <li>Calendario</a></li>
-                <li>Foro</a></li>
-            </ul>
-        </nav>
+        <div class="auth-invitado" id="auth-invitado">
+            <button class="btn btn-fantasma" id="btn-abrir-login">Iniciar sesión</button>
+            <button class="btn btn-relleno" id="btn-abrir-registro">Registrarse</button>
+        </div>
+
+        <div class="auth-usuario oculto" id="auth-usuario">
+            <span class="saludo">Hola, <strong id="nombre-usuario">vecina</strong></span>
+            <button class="btn btn-fantasma" id="btn-salir">Cerrar sesión</button>
+        </div>
     </header>
 
     <main>
 
-        <section id="intro">
-            <h2>¿Qué es esta plataforma?</h2>
+        <!-- ===== VISTA: INICIO ===== -->
+        <section id="vista-inicio" class="vista vista-activa">
 
-            <p>
-                Esta plataforma permite registrar y gestionar huertas urbanas
-                comunitarias, compartir conocimientos y promover la producción
-                sostenible de alimentos.
-            </p>
+            <div class="hero">
+                <div class="hero-texto">
+                    <p class="hero-eyebrow">Agricultura urbana en red</p>
+                    <h1>Cultivar en comunidad, cosechar en red.</h1>
+                    <p class="hero-parrafo">
+                        EcoHuertos es una aplicación web que conecta a vecinos, colectivos y
+                        organizaciones comunitarias interesadas en la agricultura urbana. La
+                        plataforma permite registrar y gestionar huertas comunitarias,
+                        coordinar labores de siembra y cosecha entre varios usuarios, y
+                        centralizar el conocimiento agrícola de la comunidad a través de un
+                        foro y una biblioteca de guías.
+                    </p>
+                    <div class="hero-acciones">
+                        <button class="btn btn-relleno btn-grande" id="btn-hero-registro">Registra tu huerta</button>
+                        <a href="#seccion-problema" class="btn btn-texto">¿Qué problema resuelve?</a>
+                    </div>
+                </div>
+
+                <div class="hero-imagen">
+                    <img
+                        src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?fm=jpg&q=80&w=1200&auto=format&fit=crop"
+                        alt="Plántulas creciendo en una huerta urbana comunitaria">
+                </div>
+            </div>
+
+            <section id="seccion-problema" class="franja">
+                <h2>El problema que resolvemos</h2>
+                <p>
+                    Hoy, quienes cultivan huertas urbanas se organizan de forma dispersa:
+                    por chats informales o de manera presencial. Eso dificulta el
+                    seguimiento de actividades, la planificación de cultivos y el
+                    crecimiento de la red de huertas. EcoHuertos centraliza esa
+                    coordinación en un solo lugar.
+                </p>
+            </section>
+
+            <section class="franja">
+                <h2>Pensado para</h2>
+                <div class="tarjetas-publico">
+                    <article class="tarjeta">
+                        <span class="tarjeta-icono">🏡</span>
+                        <h3>Vecinos y familias</h3>
+                        <p>Con o sin experiencia previa en agricultura urbana.</p>
+                    </article>
+                    <article class="tarjeta">
+                        <span class="tarjeta-icono">🤝</span>
+                        <h3>Colectivos y JAC</h3>
+                        <p>Juntas de acción comunal que administran huertas colectivas.</p>
+                    </article>
+                    <article class="tarjeta">
+                        <span class="tarjeta-icono">🎓</span>
+                        <h3>Instituciones</h3>
+                        <p>Centros educativos y ambientales que promueven huertas urbanas.</p>
+                    </article>
+                </div>
+            </section>
+
         </section>
 
-        <section id="registro-huerta">
-            <h2>Registrar una huerta</h2>
+        <!-- ===== VISTA: CALENDARIO PÚBLICO ===== -->
+        <section id="vista-calendario" class="vista">
+            <h2>Calendario público</h2>
+            <p class="subtitulo">Siembras, cosechas y jornadas comunitarias abiertas a todo el mundo.</p>
+
+            <div class="lista-eventos">
+                <article class="evento">
+                    <div class="evento-fecha">
+                        <span class="evento-dia">04</span>
+                        <span class="evento-mes">Oct</span>
+                    </div>
+                    <div class="evento-info">
+                        <h3>Siembra de hortalizas de clima frío</h3>
+                        <p>Huerta El Retoño · Jornada abierta a nuevos voluntarios.</p>
+                    </div>
+                </article>
+                <article class="evento">
+                    <div class="evento-fecha">
+                        <span class="evento-dia">18</span>
+                        <span class="evento-mes">Oct</span>
+                    </div>
+                    <div class="evento-info">
+                        <h3>Cosecha comunitaria de tomates</h3>
+                        <p>Huerta Semillas del Barrio · Trae tu propio recipiente.</p>
+                    </div>
+                </article>
+                <article class="evento">
+                    <div class="evento-fecha">
+                        <span class="evento-dia">02</span>
+                        <span class="evento-mes">Nov</span>
+                    </div>
+                    <div class="evento-info">
+                        <h3>Taller de compostaje casero</h3>
+                        <p>Huerta El Retoño · Abierto al público, cupos limitados.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ===== VISTA: HUERTAS PÚBLICAS ===== -->
+        <section id="vista-huertas" class="vista">
+            <h2>Huertas públicas</h2>
+            <p class="subtitulo">Explora las huertas registradas por la comunidad o añade la tuya.</p>
 
             <form id="form-huerta">
-
                 <div class="campo">
                     <label for="nombre">Nombre de la huerta</label>
                     <input type="text" id="nombre" required>
                 </div>
-
                 <div class="campo">
                     <label for="ubicacion">Ubicación</label>
                     <input type="text" id="ubicacion" required>
                 </div>
-
                 <div class="campo">
                     <label for="cultivo">Cultivo principal</label>
                     <input type="text" id="cultivo" required>
                 </div>
-
-                <button type="submit">
-                    Registrar huerta
-                </button>
-
+                <button type="submit" class="btn btn-relleno">Registrar huerta</button>
             </form>
+
+            <div id="contenedor-huertas" class="lista-huertas"></div>
         </section>
 
-        <section id="lista-huertas">
-            <h2>Huertas registradas</h2>
+        <!-- ===== VISTA: FORO PÚBLICO ===== -->
+        <section id="vista-foro" class="vista">
+            <h2>Foro público</h2>
+            <p class="subtitulo">Preguntas y aprendizajes compartidos por toda la comunidad.</p>
 
-            <div id="contenedor-huertas">
+            <div class="lista-hilos">
+                <article class="hilo">
+                    <h3>¿Cómo controlar el pulgón sin químicos?</h3>
+                    <p>12 respuestas · Última actividad hace 2 días</p>
+                </article>
+                <article class="hilo">
+                    <h3>Guía rápida: rotación de cultivos en camas pequeñas</h3>
+                    <p>7 respuestas · Última actividad hace 5 días</p>
+                </article>
+                <article class="hilo">
+                    <h3>Buscamos voluntarios para huerta escolar</h3>
+                    <p>3 respuestas · Última actividad hace 1 semana</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- ===== VISTA: MI PROYECTO (privada) ===== -->
+        <section id="vista-proyecto" class="vista">
+            <h2>Mi proyecto</h2>
+            <p class="subtitulo">Tu espacio personal dentro de EcoHuertos.</p>
+
+            <nav class="subtabs">
+                <button class="subtab subtab-activa" data-panel="panel-info">Información</button>
+                <button class="subtab" data-panel="panel-mi-huerta">Mi huerta</button>
+                <button class="subtab" data-panel="panel-mi-foro">Mi foro</button>
+                <button class="subtab" data-panel="panel-mi-calendario">Mi calendario</button>
+            </nav>
+
+            <div id="panel-info" class="panel panel-activo">
+                <h3>Información de tu cuenta</h3>
+                <p>Nombre: <strong id="info-nombre">—</strong></p>
+                <p>Correo: <strong id="info-correo">—</strong></p>
+                <p>Desde aquí podrás administrar tus datos y preferencias de la comunidad.</p>
+            </div>
+
+            <div id="panel-mi-huerta" class="panel">
+                <h3>Mi huerta</h3>
+                <p class="subtitulo">Huertas que has registrado con tu cuenta.</p>
+                <div id="contenedor-mis-huertas" class="lista-huertas"></div>
+            </div>
+
+            <div id="panel-mi-foro" class="panel">
+                <h3>Mi foro</h3>
+                <p>Aún no has publicado ni respondido ningún hilo. Cuando lo hagas, aparecerá aquí.</p>
+            </div>
+
+            <div id="panel-mi-calendario" class="panel">
+                <h3>Mi calendario</h3>
+                <p>Aún no te has apuntado a ninguna actividad. Explora el calendario público para unirte a una.</p>
             </div>
         </section>
 
     </main>
+
+    <!-- ===== NAVEGACIÓN INFERIOR ===== -->
+    <nav class="tabbar">
+        <button class="tab tab-activa" data-vista="inicio">
+            <span class="tab-icono">🏠</span><span>Inicio</span>
+        </button>
+        <button class="tab" data-vista="calendario">
+            <span class="tab-icono">📅</span><span>Calendario</span>
+        </button>
+        <button class="tab" data-vista="huertas">
+            <span class="tab-icono">🌱</span><span>Huertas</span>
+        </button>
+        <button class="tab" data-vista="foro">
+            <span class="tab-icono">💬</span><span>Foro</span>
+        </button>
+        <button class="tab oculto" data-vista="proyecto" id="tab-proyecto">
+            <span class="tab-icono">📁</span><span>Mi Proyecto</span>
+        </button>
+    </nav>
+
+    <!-- ===== MODAL: INICIAR SESIÓN ===== -->
+    <div class="modal-fondo oculto" id="modal-login">
+        <div class="modal">
+            <button class="modal-cerrar" data-cerrar="modal-login">✕</button>
+            <h2>Iniciar sesión</h2>
+            <form id="form-login">
+                <div class="campo">
+                    <label for="login-correo">Correo</label>
+                    <input type="email" id="login-correo" required>
+                </div>
+                <div class="campo">
+                    <label for="login-clave">Contraseña</label>
+                    <input type="password" id="login-clave" required>
+                </div>
+                <button type="submit" class="btn btn-relleno">Entrar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== MODAL: REGISTRARSE ===== -->
+    <div class="modal-fondo oculto" id="modal-registro">
+        <div class="modal">
+            <button class="modal-cerrar" data-cerrar="modal-registro">✕</button>
+            <h2>Crear cuenta</h2>
+            <form id="form-registro">
+                <div class="campo">
+                    <label for="registro-nombre">Nombre</label>
+                    <input type="text" id="registro-nombre" required>
+                </div>
+                <div class="campo">
+                    <label for="registro-correo">Correo</label>
+                    <input type="email" id="registro-correo" required>
+                </div>
+                <div class="campo">
+                    <label for="registro-clave">Contraseña</label>
+                    <input type="password" id="registro-clave" required>
+                </div>
+                <button type="submit" class="btn btn-relleno">Crear cuenta</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p>EcoHuertos · Construyendo soberanía alimentaria y resiliencia comunitaria.</p>
+    </footer>
 
     <script src="script.js"></script>
 
