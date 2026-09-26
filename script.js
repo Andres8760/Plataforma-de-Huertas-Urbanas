@@ -1,7 +1,38 @@
 /* ===================== ESTADO ===================== */
 
 let huertas = [];
-let sesion = null; // null = invitado, o { nombre, correo }
+let usuarios = cargarUsuarios();
+let sesion = cargarSesion(); // null = invitado, o { nombres, apellidos, usuario, correo, clave }
+
+/* ===================== PERSISTENCIA (localStorage) ===================== */
+
+function cargarUsuarios() {
+    try {
+        return JSON.parse(localStorage.getItem("ecohuertos_usuarios")) || [];
+    } catch (error) {
+        return [];
+    }
+}
+
+function guardarUsuarios() {
+    localStorage.setItem("ecohuertos_usuarios", JSON.stringify(usuarios));
+}
+
+function cargarSesion() {
+    try {
+        return JSON.parse(localStorage.getItem("ecohuertos_sesion"));
+    } catch (error) {
+        return null;
+    }
+}
+
+function guardarSesion() {
+    if (sesion) {
+        localStorage.setItem("ecohuertos_sesion", JSON.stringify(sesion));
+    } else {
+        localStorage.removeItem("ecohuertos_sesion");
+    }
+}
 
 /* ===================== ELEMENTOS ===================== */
 
@@ -58,7 +89,7 @@ function renderizarMisHuertas() {
         return;
     }
 
-    const misHuertas = huertas.filter(h => h.autor === sesion.nombre);
+    const misHuertas = huertas.filter(h => h.autor === sesion.usuario);
 
     if (misHuertas.length === 0) {
         contenedorMisHuertas.innerHTML = "<p>Todavía no has registrado ninguna huerta.</p>";
@@ -77,7 +108,7 @@ formulario.addEventListener("submit", function (evento) {
         nombre: document.getElementById("nombre").value,
         ubicacion: document.getElementById("ubicacion").value,
         cultivo: document.getElementById("cultivo").value,
-        autor: sesion ? sesion.nombre : null
+        autor: sesion ? sesion.usuario : null
     };
 
     huertas.push(nuevaHuerta);
@@ -152,56 +183,116 @@ document.querySelectorAll("[data-cerrar]").forEach(boton => {
     });
 });
 
-/* ===================== SESIÓN (simulada, sin backend) ===================== */
+/* ===================== SESIÓN ===================== */
+/* Nota: las cuentas se validan contra localStorage en el propio navegador.
+   Es un sistema de demostración sin backend; no usar contraseñas reales. */
 
-function iniciarSesion(nombre, correo) {
-    sesion = { nombre, correo };
+function mostrarErrorFormulario(idError, mensaje) {
+    const elemento = document.getElementById(idError);
+    elemento.textContent = mensaje;
+    elemento.classList.remove("oculto");
+}
 
-    authInvitado.classList.add("oculto");
-    authUsuario.classList.remove("oculto");
-    nombreUsuarioSpan.textContent = nombre;
-    tabProyecto.classList.remove("oculto");
+function ocultarErrorFormulario(idError) {
+    document.getElementById(idError).classList.add("oculto");
+}
 
-    document.getElementById("info-nombre").textContent = nombre;
-    document.getElementById("info-correo").textContent = correo;
+function actualizarUISesion() {
+    if (sesion) {
+        authInvitado.classList.add("oculto");
+        authUsuario.classList.remove("oculto");
+        nombreUsuarioSpan.textContent = sesion.usuario;
+        tabProyecto.classList.remove("oculto");
+
+        document.getElementById("info-nombre-completo").textContent =
+            `${sesion.nombres} ${sesion.apellidos}`;
+        document.getElementById("info-usuario").textContent = sesion.usuario;
+        document.getElementById("info-correo").textContent = sesion.correo;
+    } else {
+        authUsuario.classList.add("oculto");
+        authInvitado.classList.remove("oculto");
+        tabProyecto.classList.add("oculto");
+    }
 
     renderizarMisHuertas();
 }
 
+function iniciarSesion(usuario) {
+    sesion = usuario;
+    guardarSesion();
+    actualizarUISesion();
+}
+
 function cerrarSesion() {
     sesion = null;
-
-    authUsuario.classList.add("oculto");
-    authInvitado.classList.remove("oculto");
-    tabProyecto.classList.add("oculto");
-
+    guardarSesion();
+    actualizarUISesion();
     mostrarVista("inicio");
 }
 
 document.getElementById("form-login").addEventListener("submit", (evento) => {
     evento.preventDefault();
-    const correo = document.getElementById("login-correo").value;
-    const nombre = correo.split("@")[0];
+    ocultarErrorFormulario("error-login");
 
-    iniciarSesion(nombre, correo);
+    const identificador = document.getElementById("login-identificador").value.trim().toLowerCase();
+    const clave = document.getElementById("login-clave").value;
+
+    const usuario = usuarios.find(u =>
+        u.usuario.toLowerCase() === identificador || u.correo.toLowerCase() === identificador
+    );
+
+    if (!usuario) {
+        mostrarErrorFormulario("error-login", "No encontramos una cuenta con ese usuario o correo.");
+        return;
+    }
+
+    if (usuario.clave !== clave) {
+        mostrarErrorFormulario("error-login", "La contraseña es incorrecta.");
+        return;
+    }
+
+    iniciarSesion(usuario);
     cerrarModal(modalLogin);
     evento.target.reset();
-    mostrarVista("proyecto");
+    mostrarVista("inicio");
 });
 
 document.getElementById("form-registro").addEventListener("submit", (evento) => {
     evento.preventDefault();
-    const nombre = document.getElementById("registro-nombre").value;
-    const correo = document.getElementById("registro-correo").value;
+    ocultarErrorFormulario("error-registro");
 
-    iniciarSesion(nombre, correo);
+    const nombres = document.getElementById("registro-nombres").value.trim();
+    const apellidos = document.getElementById("registro-apellidos").value.trim();
+    const usuario = document.getElementById("registro-usuario").value.trim();
+    const correo = document.getElementById("registro-correo").value.trim();
+    const clave = document.getElementById("registro-clave").value;
+
+    const usuarioDuplicado = usuarios.some(u => u.usuario.toLowerCase() === usuario.toLowerCase());
+    const correoDuplicado = usuarios.some(u => u.correo.toLowerCase() === correo.toLowerCase());
+
+    if (usuarioDuplicado) {
+        mostrarErrorFormulario("error-registro", "Ese nombre de usuario ya está en uso.");
+        return;
+    }
+
+    if (correoDuplicado) {
+        mostrarErrorFormulario("error-registro", "Ya existe una cuenta con ese correo.");
+        return;
+    }
+
+    const nuevoUsuario = { nombres, apellidos, usuario, correo, clave };
+    usuarios.push(nuevoUsuario);
+    guardarUsuarios();
+
+    iniciarSesion(nuevoUsuario);
     cerrarModal(modalRegistro);
     evento.target.reset();
-    mostrarVista("proyecto");
+    mostrarVista("inicio");
 });
 
 document.getElementById("btn-salir").addEventListener("click", cerrarSesion);
 
 /* ===================== INICIO ===================== */
 
+actualizarUISesion();
 renderizarHuertas();
