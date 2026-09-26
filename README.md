@@ -16,4 +16,7 @@ Proyecto enfocado en fortalecer la soberanía alimentaria mediante la creación 
 
 
 ## Estado del proyecto
-En desarrollo.
+
+Base de la pagina completada
+se tiene ya vista e interacción con los objetos de esta.
+Aun en desarrollo.
