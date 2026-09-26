@@ -24,7 +24,7 @@ body {
   background-color: var(--crema);
   color: var(--texto);
   padding-bottom: 84px;
-  /* deja espacio para la barra inferior */
+
 }
 
 h1, h2, h3 {
