@@ -368,6 +368,36 @@ input:focus {
   display: block;
 }
 
+.franja-sin-borde {
+  border-top: none;
+  padding-top: 20px;
+}
+
+.tarjeta-autor {
+  text-align: center;
+}
+
+.autor-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: var(--verde-suave);
+  color: var(--verde-oscuro);
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.autor-rol {
+  color: var(--tierra);
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
 /* ===== BARRA INFERIOR ===== */
 .tabbar {
   position: fixed;
@@ -381,6 +411,7 @@ input:focus {
   border-top: 1px solid var(--borde);
   padding: 8px 10px;
   z-index: 30;
+  overflow-x: auto;
 }
 
 .tab {
