@@ -1,10 +1,7 @@
-/* ===================== ESTADO ===================== */
-
 let huertas = [];
 let usuarios = cargarUsuarios();
 let sesion = cargarSesion(); // null = invitado, o { nombres, apellidos, usuario, correo, clave }
 
-/* ===================== PERSISTENCIA (localStorage) ===================== */
 
 function cargarUsuarios() {
     try {
@@ -34,8 +31,6 @@ function guardarSesion() {
     }
 }
 
-/* ===================== ELEMENTOS ===================== */
-
 const formulario = document.getElementById("form-huerta");
 const contenedorHuertas = document.getElementById("contenedor-huertas");
 const contenedorMisHuertas = document.getElementById("contenedor-mis-huertas");
@@ -50,8 +45,6 @@ const nombreUsuarioSpan = document.getElementById("nombre-usuario");
 
 const modalLogin = document.getElementById("modal-login");
 const modalRegistro = document.getElementById("modal-registro");
-
-/* ===================== HUERTAS ===================== */
 
 function crearTarjetaHuerta(huerta) {
     const tarjeta = document.createElement("article");
@@ -116,8 +109,6 @@ formulario.addEventListener("submit", function (evento) {
     formulario.reset();
 });
 
-/* ===================== NAVEGACIÓN ENTRE VISTAS ===================== */
-
 function mostrarVista(nombreVista) {
     if (nombreVista === "proyecto" && !sesion) {
         abrirModal(modalLogin);
@@ -143,8 +134,6 @@ document.getElementById("btn-hero-registro").addEventListener("click", () => {
     mostrarVista("huertas");
 });
 
-/* ===================== SUBPESTAÑAS: MI PROYECTO ===================== */
-
 const subtabs = document.querySelectorAll(".subtab");
 const paneles = document.querySelectorAll(".panel");
 
@@ -157,8 +146,6 @@ subtabs.forEach(subtab => {
         document.getElementById(subtab.dataset.panel).classList.add("panel-activo");
     });
 });
-
-/* ===================== MODALES ===================== */
 
 function abrirModal(modal) {
     modal.classList.remove("oculto");
@@ -182,10 +169,6 @@ document.querySelectorAll("[data-cerrar]").forEach(boton => {
         if (evento.target === modal) cerrarModal(modal);
     });
 });
-
-/* ===================== SESIÓN ===================== */
-/* Nota: las cuentas se validan contra localStorage en el propio navegador.
-   Es un sistema de demostración sin backend; no usar contraseñas reales. */
 
 function mostrarErrorFormulario(idError, mensaje) {
     const elemento = document.getElementById(idError);
