@@ -48,7 +48,6 @@ p {
   display: none !important;
 }
 
-/* ===== BOTONES ===== */
 .btn {
   font-family: 'Karla', Arial, sans-serif;
   font-size: 0.95rem;
@@ -92,7 +91,6 @@ p {
   font-size: 1.05rem;
 }
 
-/* ===== BARRA SUPERIOR ===== */
 .topbar {
   display: flex;
   align-items: center;
@@ -128,7 +126,6 @@ p {
   margin-right: 4px;
 }
 
-/* ===== CONTENIDO ===== */
 main {
   max-width: 1080px;
   margin: 0 auto;
@@ -148,7 +145,6 @@ main {
   color: var(--texto-suave);
 }
 
-/* ===== HERO ===== */
 .hero {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
@@ -186,7 +182,6 @@ main {
   outline: 1px solid var(--borde);
 }
 
-/* ===== FRANJAS / SECCIONES DE CONTENIDO ===== */
 .franja {
   padding: 32px 0;
   border-top: 1px solid var(--borde);
@@ -210,7 +205,6 @@ main {
   font-size: 1.6rem;
 }
 
-/* ===== FORMULARIOS ===== */
 form {
   background-color: var(--blanco);
   border: 1px solid var(--borde);
@@ -246,7 +240,6 @@ input:focus {
   outline-offset: 1px;
 }
 
-/* ===== HUERTAS ===== */
 .lista-huertas {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -260,7 +253,6 @@ input:focus {
   padding: 18px;
 }
 
-/* ===== CALENDARIO ===== */
 .lista-eventos {
   display: flex;
   flex-direction: column;
@@ -310,7 +302,6 @@ input:focus {
   margin: 0;
 }
 
-/* ===== FORO ===== */
 .lista-hilos {
   display: flex;
   flex-direction: column;
@@ -334,7 +325,6 @@ input:focus {
   font-size: 0.9rem;
 }
 
-/* ===== MI PROYECTO ===== */
 .subtabs {
   display: flex;
   gap: 8px;
@@ -398,7 +388,6 @@ input:focus {
   margin-bottom: 8px;
 }
 
-/* ===== BARRA INFERIOR ===== */
 .tabbar {
   position: fixed;
   bottom: 0;
@@ -439,7 +428,6 @@ input:focus {
   background-color: var(--verde-suave);
 }
 
-/* ===== MODALES ===== */
 .modal-fondo {
   position: fixed;
   inset: 0;
@@ -490,7 +478,6 @@ input:focus {
   max-width: none;
 }
 
-/* ===== PIE ===== */
 .site-footer {
   text-align: center;
   padding: 22px;
@@ -498,7 +485,6 @@ input:focus {
   font-size: 0.9rem;
 }
 
-/* ===== RESPONSIVE ===== */
 @media (max-width: 760px) {
   .hero {
     grid-template-columns: 1fr;
